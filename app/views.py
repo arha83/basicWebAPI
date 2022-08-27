@@ -6,7 +6,8 @@ from django.http import JsonResponse
 from .models import Var, VarGroup
 import json
 
-# Create your views here.
+# TODO:
+# if no json is sent to api, it will raise server error; fix it!
 
 
 def index(request):
@@ -89,7 +90,7 @@ def groupsList(request):
         data = request.body.decode('utf-8')
         data = json.loads(data)
 
-        title= data.get('title') if data.get('text') != None else ''
+        title= data.get('title') if data.get('title') != None else ''
         try:
             varGroup= VarGroup(title= title)
             varGroup.save()
